@@ -11,15 +11,13 @@ public class GameFrame extends JPanel implements Runnable {
         snake = new Snake();
         thread = new Thread(this);
         thread.start();
-
-
     }
 
     @Override
     public void paint(Graphics g) {
        // super.paintComponents(g);
         paintBg(g);
-        snake.paint(g);
+        snake.paintSnake(g);
     }
     public void  paintBg(Graphics g){
 
