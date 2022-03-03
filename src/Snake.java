@@ -1,7 +1,8 @@
 import java.awt.*;
+import java.util.Random;
 
 public class Snake {
-    int lenghtS = 4;
+    int lenghtS = 1;
 
     int x [];
     int y [];
@@ -18,12 +19,6 @@ public class Snake {
 
         x[0] = 5;
         y[0] = 4;
-        x[1] = 5;
-        y[1] = 3;
-        x[2] = 5;
-        y[2] = 2;
-        x[3] = 5;
-        y[3] = 1;
     }
     public void setVector(int v){
         if(vector != -v){
@@ -31,25 +26,62 @@ public class Snake {
         }
 
     }
-    public void move(){
+    public boolean locationSnake( int x , int y){
+        for(int i =0 ; i<lenghtS; i++){
+            if( this.x[i] == x && this.y[i] == y) return true;
+        }
+        return false;
+    }
+    //toa do moi ngau nhien
+    public Point getLocationFood(){
+        Random random  = new Random();
+        int x;
+        int y;
+        do{
+             x = random.nextInt(19);
+             y = random.nextInt(19);
+        }
+        while(locationSnake(x,y));
 
-        if(System.currentTimeMillis() - t1 >500){
+
+        return new Point(x,y);
+    }
+    //ham ran di chuyen
+    public void move(){
+        int counter = 0;
+        if(System.currentTimeMillis() - t1 >100){
+            if(GameFrame.bg [x[0]] [y[0]] == 2){
+                lenghtS++;
+                counter ++ ;
+               GameFrame.bg [x[0]] [y[0]] = 0;
+               GameFrame.bg[getLocationFood().x] [getLocationFood().y] = 2;
+
+            }
             for(int i = lenghtS - 1 ; i>0; i--){
                 x[i] = x[i-1];
                 y[i] = y[i-1];
             }
-//            for(int i = 1 ; i <= lenghtS; i++){
-//                x[i] = x[i-2];
-//                y[i] = y[i-2];
-//            }
-           if( vector == Snake.GO_UP) y[0]--;
+
+            if( vector == Snake.GO_UP) y[0]--;
             if( vector == Snake.GO_DOWN) y[0]++;
             if( vector == Snake.GO_LEFT) x[0]--;
             if( vector == Snake.GO_RIGHT) x[0]++;
             t1 = System.currentTimeMillis();
+            if (x[0] < 0) x[0] =19;
+            if (x[0] > 19) x[0] =0;
+            if (y[0] < 0) y[0] =19;
+            if (y[0] > 19) y[0] =0;
+            System.out.println(counter);
         }
 
     }
+//    public void score(){
+//        int counter = 0;
+//        if(GameFrame.bg [x[0]] [y[0]] == 2) {
+//            counter ++ ;
+//        }
+//        System.out.println(counter);
+//        }
     public void paintSnake(Graphics g){
 
         for(int i = 0; i<lenghtS; i++){

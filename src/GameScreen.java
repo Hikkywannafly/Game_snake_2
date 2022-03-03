@@ -5,12 +5,19 @@ import java.awt.event.KeyListener;
 
 public class GameScreen extends JFrame {
     GameFrame gameFrame;
+    JPanel upPanel;
     public GameScreen()  {
-        setVisible(true);
-        setSize(420,440);
+        this.setLayout(new BorderLayout());
+        upPanel = new JPanel();
+        upPanel.setBackground(Color.WHITE);
+
+        Label lb  = new Label("You've played Eimi Fukada" + "Times" );
+        upPanel.add(lb);
+        add(upPanel,BorderLayout.NORTH);
+        setSize(420,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         gameFrame = new GameFrame();
-        add(gameFrame);
+        add(gameFrame, BorderLayout.CENTER);
         this.addKeyListener(new handler());
         setVisible(true);
     }
