@@ -5,10 +5,10 @@ public class Snake {
 
     int x [];
     int y [];
-    public static int GO_UP = 0;
-    public static int GO_DOWN = 1;
+    public static int GO_UP = 1;
+    public static int GO_DOWN = -1;
     public static int GO_LEFT = 2;
-    public static int GO_RIGHT = 3;
+    public static int GO_RIGHT = -2;
     int vector = Snake.GO_DOWN;
 
     long t1 = 0;
@@ -21,7 +21,10 @@ public class Snake {
 
     }
     public void setVector(int v){
-        vector = v;
+        if(vector != -v){
+            vector = v;
+        }
+
     }
     public void update(){
         if(System.currentTimeMillis() - t1 >500){
