@@ -19,7 +19,7 @@ public class GameFrame extends JPanel implements Runnable {
         paintBg(g);
         snake.paintSnake(g);
     }
-    public void  paintBg(Graphics g){
+    public void paintBg(Graphics g){
 
         for(int i =0; i<20; i++){
             for(int j = 0; j<20; j++){
