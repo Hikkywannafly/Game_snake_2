@@ -26,15 +26,14 @@ public class GameFrame extends JPanel implements Runnable {
     }
     //luoi do an;
     public void paintBg(Graphics g){
-        g.setColor(Color.white); // luoi
+        g.setColor(Color.BLACK);; // luoi
         for(int i =0; i<20; i++){
             for(int j = 0; j<20; j++){
                 g.fillRect(i*20+2  ,j*20+2,20,20);
                 if(bg[i][j] == 2){
                     g.setColor(Color.RED);
-                    g.fillOval(i*20+2  ,j*20+2,20,20);
                     g.drawImage(Data.imageFood,i*20+2,j*20+2,null);
-                    g.setColor(Color.white);
+                    g.setColor(Color.BLACK);
                 }
             }
         }
