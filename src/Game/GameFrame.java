@@ -1,7 +1,9 @@
 package Game;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 public class GameFrame extends JPanel implements Runnable {
     int score;
@@ -10,6 +12,7 @@ public class GameFrame extends JPanel implements Runnable {
     Snake snake;
     public GameFrame() {
         snake = new Snake();
+        Data.loadImage();
         bg [10] [10] =2;
         thread = new Thread(this);
         thread.start();
@@ -21,6 +24,7 @@ public class GameFrame extends JPanel implements Runnable {
         paintBg(g);
         snake.paintSnake(g);
     }
+    //luoi do an;
     public void paintBg(Graphics g){
         g.setColor(Color.white); // luoi
         for(int i =0; i<20; i++){
@@ -29,6 +33,7 @@ public class GameFrame extends JPanel implements Runnable {
                 if(bg[i][j] == 2){
                     g.setColor(Color.RED);
                     g.fillOval(i*20+2  ,j*20+2,20,20);
+                    g.drawImage(Data.imageFood,i*20+2,j*20+2,null);
                     g.setColor(Color.white);
                 }
             }

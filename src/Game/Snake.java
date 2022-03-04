@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.Random;
 
 public class Snake {
-    int lenghtS = 1;
+    int lenghtS = 3;
 
     int x [];
     int y [];
@@ -77,20 +77,20 @@ public class Snake {
         }
 
     }
-//    public void score(){
-//        int counter = 0;
-//        if(GameFrame.bg [x[0]] [y[0]] == 2) {
-//            counter ++ ;
-//        }
-//        System.out.println(counter);
-//        }
+    //        }
+    //ve ran
     public void paintSnake(Graphics g){
 
-        for(int i = 0; i<lenghtS; i++){
+        for(int i = 1; i<lenghtS-1; i++){
             if( i == 0) g.setColor(new Color(0 ,205 ,0));
             else g.setColor(new Color(0, 255, 127));
 
-                g.fillRect(x[i]*20 +2 ,y[i]*20 +2,20,20);
+                //g.fillRect(x[i]*20 +2 ,y[i]*20 +2,20,20);
+                ///Data.loadImage(); không de o day cham chuong trinh
+                g.drawImage(Data.imageBody,x[i]*20 +2,y[i]*20 +2,null);
+                g.drawImage(Data.imageHead,x[0]*20 +2,y[0]*20 +2,null);
+                g.drawImage(Data.imageTail,x[lenghtS-1]*20 +2,y[lenghtS-1]*20 +2,null);
+
 
         }
     }
