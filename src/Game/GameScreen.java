@@ -1,7 +1,6 @@
 package Game;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -9,7 +8,7 @@ public class GameScreen extends JFrame {
     GameFrame gameFrame;
 
     public GameScreen()  {
-        setSize(420,440);
+        setSize(450,480);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         gameFrame = new GameFrame();
         add(gameFrame);
@@ -31,6 +30,9 @@ public class GameScreen extends JFrame {
         public void keyPressed(KeyEvent e) {
             System.out.println("Da Nhan");
 
+            if(e.getKeyCode() == KeyEvent.VK_SPACE){
+               GameFrame.isplaying =! GameFrame.isplaying;
+            }
             if(e.getKeyCode() == KeyEvent.VK_UP){
                 gameFrame.snake.setVector(Snake.GO_UP);
             }

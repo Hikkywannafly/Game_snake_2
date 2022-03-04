@@ -20,10 +20,12 @@ public class Snake {
         x = new int[20];
         y = new int[20];
 
-        x[0] = 5;
-        y[0] = 4;
-        x[1] = 5;
-        y[1] = 3;
+        x[0] = 2;
+        y[0] = 3;
+        x[1] = 2;
+        y[1] = 2;
+        x[2] = 2;
+        y[2] = 1;
     }
 
     public void setVector(int v) {
@@ -58,7 +60,7 @@ public class Snake {
     //ham ran di chuyen
     public void move() {
         int counter = 0;
-        if (System.currentTimeMillis() - t1 > 1000) {
+        if (System.currentTimeMillis() - t1 > 200 ) {
             if (GameFrame.bg[x[0]][y[0]] == 2) {
                 lenghtS++;
                 counter++;
@@ -93,16 +95,16 @@ public class Snake {
             if (i == 0) g.setColor(new Color(0, 205, 0));
             else g.setColor(new Color(0, 255, 127));
 
-            g.drawImage(Data.imageBody,x[i]*20 +2 ,y[i]*20 +2,null);
+            g.drawImage(Data.imageBody,x[i]*20 +2 + GameFrame.padding ,y[i]*20 +2 + GameFrame.padding,null);
             ///Data.loadImage(); không de o day cham chuong trinh
             if (vector == Snake.GO_RIGHT) {
-                g.drawImage(Data.imageHeadRight, x[0] * 20 + 2, y[0] * 20 + 2, null);
+                g.drawImage(Data.imageHeadRight, x[0] * 20 + 2 + GameFrame.padding , y[0] * 20 + 2 + GameFrame.padding, null);
             } else if (vector == Snake.GO_LEFT) {
-                g.drawImage(Data.imageHeadLeft, x[0] * 20 + 2, y[0] * 20 + 2, null);
+                g.drawImage(Data.imageHeadLeft, x[0] * 20 + 2 + GameFrame.padding , y[0] * 20 + 2 + GameFrame.padding, null);
             } else if (vector == Snake.GO_DOWN) {
-                g.drawImage(Data.imageHeadDown, x[0] * 20 + 2, y[0] * 20 + 2, null);
+                g.drawImage(Data.imageHeadDown, x[0] * 20 + 2 + GameFrame.padding, y[0] * 20 + 2 + GameFrame.padding, null);
             } else if (vector == Snake.GO_UP) {
-                g.drawImage(Data.imageHeadUp, x[0] * 20 + 2, y[0] * 20 + 2, null);
+                g.drawImage(Data.imageHeadUp, x[0] * 20 + 2 + GameFrame.padding, y[0] * 20 + 2 + GameFrame.padding, null);
             }
 
 
