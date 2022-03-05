@@ -15,7 +15,10 @@ public class Snake {
     int vector = Snake.GO_DOWN;
 
     long t1 = 0;
-
+    long t2 = 0;
+    int speed = 200;
+    int maxLen = 5;
+    boolean udAfterChangeVt = true;
     public Snake() {
         x = new int[20];
         y = new int[20];
@@ -27,10 +30,23 @@ public class Snake {
         x[2] = 2;
         y[2] = 1;
     }
+    public void resetGame() {
+        x = new int[20];
+        y = new int[20];
 
+        x[0] = 5;
+        y[0] = 4;
+        x[1] = 5;
+        y[1] = 4;
+        x[2] = 5;
+        y[2] = 2;
+        int lenghtS = 3;
+        int vector = Snake.GO_DOWN;
+    }
     public void setVector(int v) {
-        if (vector != -v) {
+        if (vector != -v && udAfterChangeVt) {
             vector = v;
+            udAfterChangeVt = false;
         }
 
     }
@@ -59,11 +75,27 @@ public class Snake {
 
     //ham ran di chuyen
     public void move() {
+        if(lenghtS == maxLen){
+            GameFrame.isplaying = false;
+            resetGame();
+            speed = (int) (speed * 0.5);
+        }
         int counter = 0;
-        if (System.currentTimeMillis() - t1 > 200 ) {
+        for(int i = 1; i<lenghtS; i++ ){
+            if(x[0] == x[i] && y[0] == y[i]){
+             GameFrame.isplaying = false;
+             GameFrame.isGameOver = true;
+            }
+        }
+
+//        if(System.currentTimeMillis() - t2>200 ){
+//            Data.imageHeadDown.update();
+//        }
+
+
+        if (System.currentTimeMillis() - t1 > speed ) {
             if (GameFrame.bg[x[0]][y[0]] == 2) {
                 lenghtS++;
-                counter++;
                 GameFrame.bg[x[0]][y[0]] = 0;
                 GameFrame.bg[getLocationFood().x][getLocationFood().y] = 2;
 
@@ -82,7 +114,6 @@ public class Snake {
             if (x[0] > 19) x[0] = 0;
             if (y[0] < 0) y[0] = 19;
             if (y[0] > 19) y[0] = 0;
-            System.out.println(counter);
         }
 
     }
@@ -95,18 +126,18 @@ public class Snake {
             if (i == 0) g.setColor(new Color(0, 205, 0));
             else g.setColor(new Color(0, 255, 127));
 
-            g.drawImage(Data.imageBody,x[i]*20 +2 + GameFrame.padding ,y[i]*20 +2 + GameFrame.padding,null);
+            g.drawImage(Data.imageBody,x[i]*20 -7 + GameFrame.padding ,y[i]*20 -7 + GameFrame.padding,null);
             ///Data.loadImage(); không de o day cham chuong trinh
             if (vector == Snake.GO_RIGHT) {
-                g.drawImage(Data.imageHeadRight, x[0] * 20 + 2 + GameFrame.padding , y[0] * 20 + 2 + GameFrame.padding, null);
+                g.drawImage(Data.imageHeadRight, x[0] * 20 -7 + GameFrame.padding , y[0] * 20 -7 + GameFrame.padding, null);
             } else if (vector == Snake.GO_LEFT) {
-                g.drawImage(Data.imageHeadLeft, x[0] * 20 + 2 + GameFrame.padding , y[0] * 20 + 2 + GameFrame.padding, null);
+                g.drawImage(Data.imageHeadLeft, x[0] * 20 -7 + GameFrame.padding , y[0] * 20 -7 + GameFrame.padding, null);
             } else if (vector == Snake.GO_DOWN) {
-                g.drawImage(Data.imageHeadDown, x[0] * 20 + 2 + GameFrame.padding, y[0] * 20 + 2 + GameFrame.padding, null);
+                g.drawImage(Data.imageHeadDown, x[0] * 20 -7 + GameFrame.padding, y[0] * 20 -7 + GameFrame.padding, null);
             } else if (vector == Snake.GO_UP) {
-                g.drawImage(Data.imageHeadUp, x[0] * 20 + 2 + GameFrame.padding, y[0] * 20 + 2 + GameFrame.padding, null);
+                g.drawImage(Data.imageHeadUp, x[0] * 20 -7 + GameFrame.padding, y[0] * 20 -7 + GameFrame.padding, null);
             }
-
+            udAfterChangeVt = true;
 
         }
     }

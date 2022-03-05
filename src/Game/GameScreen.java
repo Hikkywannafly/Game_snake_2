@@ -14,6 +14,7 @@ public class GameScreen extends JFrame {
         add(gameFrame);
         this.addKeyListener(new handler());
         setVisible(true);
+
     }
 
     public static void main(String[] args) {
@@ -28,10 +29,15 @@ public class GameScreen extends JFrame {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            System.out.println("Da Nhan");
+
 
             if(e.getKeyCode() == KeyEvent.VK_SPACE){
                GameFrame.isplaying =! GameFrame.isplaying;
+               if(GameFrame.isGameOver) {
+                   GameFrame.isGameOver = false;
+                   gameFrame.snake.resetGame();
+               }
+
             }
             if(e.getKeyCode() == KeyEvent.VK_UP){
                 gameFrame.snake.setVector(Snake.GO_UP);
