@@ -8,7 +8,7 @@ public class GameScreen extends JFrame {
     GameFrame gameFrame;
 
     public GameScreen()  {
-        setSize(450,480);
+        setSize(630,465);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         gameFrame = new GameFrame();
         add(gameFrame);
@@ -35,7 +35,7 @@ public class GameScreen extends JFrame {
                GameFrame.isplaying =! GameFrame.isplaying;
                if(GameFrame.isGameOver) {
                    GameFrame.isGameOver = false;
-                   gameFrame.snake.resetGame();
+                   //gameFrame.snake.resetGame(); // ham rest co van de chua biet fix ra sao :((
                }
 
             }

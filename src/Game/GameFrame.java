@@ -14,6 +14,8 @@ public class GameFrame extends JPanel implements Runnable {
     static boolean enableTextStartGame = true ;
     Thread thread;
     Snake snake;
+    static int currenLevel =1 ;
+
     static boolean isGameOver = false;
     public GameFrame() {
         snake = new Snake();
@@ -28,9 +30,10 @@ public class GameFrame extends JPanel implements Runnable {
     @Override
     public void paint(Graphics g) {
        // super.paintComponents(g);
-        drawFrame(g);
+
         paintBg(g);
         snake.paintSnake(g);
+        drawFrame(g);
 
         if(!isplaying){
             if(enableTextStartGame){
@@ -47,11 +50,14 @@ public class GameFrame extends JPanel implements Runnable {
 
 
         }
+        g.setColor(Color.ORANGE);
+        g.setFont(g.getFont().deriveFont(15.0f));
+        g.drawString("CURRENT LEVEL:  " + currenLevel, 440,30);
     }
     //luoi do an;
     public void paintBg(Graphics g){
         g.setColor(Color.BLACK);; // luoi
-        g.fillRect(3,3,WIDTH+padding*2, HEIGHT +padding*2);
+        g.fillRect(3,3,WIDTH+padding*2 +200 , HEIGHT +padding*2 + 200);
         for(int i =0; i<20; i++){
             for(int j = 0; j<20; j++){
 
@@ -66,11 +72,17 @@ public class GameFrame extends JPanel implements Runnable {
 
     private void drawFrame(Graphics g){
         g.setColor(Color.GREEN);
-        g.drawRect(2,3,WIDTH+padding*2, HEIGHT +padding*2);
-        g.drawRect(2,3,WIDTH+padding*2 +1 , HEIGHT +padding*2 +1 );
-        g.drawRect(2,3,WIDTH+padding*2 +2 , HEIGHT +padding*2 +2 );
-        g.drawRect(2,3,WIDTH+padding*2 +3 , HEIGHT +padding*2 +3 );
-        g.drawRect(2,3,WIDTH+padding*2 +4 , HEIGHT +padding*2 +4 );
+        g.drawRect(2,3,WIDTH+padding*2 , HEIGHT +padding*2 );
+        g.drawRect(2,3,WIDTH+padding*2  , HEIGHT +padding*2 );
+        g.drawRect(2,3,WIDTH+padding*2  , HEIGHT +padding*2 );
+        g.drawRect(2,3,WIDTH+padding*2  , HEIGHT +padding*2 );
+        g.drawRect(2,3,WIDTH+padding*2  , HEIGHT +padding*2  );
+
+        g.drawRect(2,3,WIDTH+padding*2 +200, HEIGHT +padding*2 + 200);
+        g.drawRect(2,3,WIDTH+padding*2 +200 , HEIGHT +padding*2 +200 );
+        g.drawRect(2,3,WIDTH+padding*2 +200 , HEIGHT +padding*2 +200 );
+        g.drawRect(2,3,WIDTH+padding*2 +200 , HEIGHT +padding*2 +200 );
+        g.drawRect(2,3,WIDTH+padding*2 +200 , HEIGHT +padding*2 +200 );
     }
     @Override
     public void run(){

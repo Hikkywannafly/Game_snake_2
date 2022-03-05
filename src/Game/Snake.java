@@ -17,7 +17,7 @@ public class Snake {
     long t1 = 0;
     long t2 = 0;
     int speed = 200;
-    int maxLen = 5;
+    int maxLen = 10;
     boolean udAfterChangeVt = true;
     public Snake() {
         x = new int[20];
@@ -72,26 +72,35 @@ public class Snake {
 
         return new Point(x, y);
     }
+    public int getCurrentSpeed() {
+        int speed = 200;
+        for(int i = 0; i<GameFrame.currenLevel; i++)
+            speed -= 50;
+            return speed;
+    }
 
     //ham ran di chuyen
     public void move() {
         if(lenghtS == maxLen){
-            GameFrame.isplaying = false;
+           GameFrame.isplaying = false;
             resetGame();
-            speed = (int) (speed * 0.5);
+           GameFrame.currenLevel ++;
+            maxLen += 5;
+           speed = getCurrentSpeed();
         }
-        int counter = 0;
-        for(int i = 1; i<lenghtS; i++ ){
-            if(x[0] == x[i] && y[0] == y[i]){
+
+        for(int i = 1; i< lenghtS; i++ ){
+            if(x[0]==x[i]&&y[0]==y[i]){
+
+
              GameFrame.isplaying = false;
              GameFrame.isGameOver = true;
+
+
+
+
             }
         }
-
-//        if(System.currentTimeMillis() - t2>200 ){
-//            Data.imageHeadDown.update();
-//        }
-
 
         if (System.currentTimeMillis() - t1 > speed ) {
             if (GameFrame.bg[x[0]][y[0]] == 2) {
